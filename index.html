@@ -18,18 +18,20 @@
 
 <body>
   <div id="app">
-    <h1>{{message}}</h1>
+    <h2>Bienvenido Al Sistema!</h2>
     <div class="container">
 
       <div class="login">
         <form action="" v-on:submit.prevent="login">
-          <select v-model="selected">
-            <option value="admin">Administrador</option>
-            <option value="secretario">Secretario</option>
-            <option value="vendedor">Vendedor</option>
-            <option value="ensamblador">Ensamblador</option>
-          </select>
-          <input v-model="password" type="password" placeholder="Password" />
+          <div class="user">
+            <select v-model="selected" id="selected">
+              <option value="admin">Administrador</option>
+              <option value="secretario">Secretario</option>
+              <option value="vendedor">Vendedor</option>
+              <option value="ensamblador">Ensamblador</option>
+            </select>
+          </div>
+          <input v-model="password" type="password" placeholder="Escribe Tu Password" />
           <input type="submit" value="Enviar" />
         </form>
       </div>
@@ -68,8 +70,7 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li><a href="">Horas Extras Trabajadas<< /a>
-                  </li>
+                  <li><a href="">Horas Extras Trabajadas</a></li>
                 </ul>
               </nav>
             </div>
@@ -103,7 +104,7 @@
         </div>
       </template>
 
-      <template v-if="is.isEmsablador">
+      <template v-if="is.isEnsamblador">
         <div class=" content">
           <div class="header">
             <div class="title">
@@ -113,7 +114,7 @@
               <nav>
                 <ul>
                   <li><a href="">Horas Extras Trabajadas</a></li>
-                  <li><a href="">Cantidad De Emsables Zapatos - Zapatillas</a></li>
+                  <li><a href="">Cantidad De Ensambles Zapatos - Zapatillas</a></li>
                 </ul>
               </nav>
             </div>
@@ -124,9 +125,9 @@
               <button>Enviar Horas Extras Trabajadas</button>
             </div>
 
-            <div class="zapatos-emsablados">
-              <input type="text" placeholder="Ingrese la cantidad de Emsables de zapatos">
-              <input type=" text" placeholder="Ingrese la cantidad de Emsables de zapatillas">
+            <div class="zapatos-ensamblados">
+              <input type="text" placeholder="Ingrese la cantidad de Ensambles de zapatos">
+              <input type=" text" placeholder="Ingrese la cantidad de Ensambles de zapatillas">
               <button>Enviar Zapatos - Zapatillas</button>
             </div>
 
