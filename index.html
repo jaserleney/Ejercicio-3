@@ -43,16 +43,18 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li>Salarios Base</li>
-                  <li>Informes Liquidacion</li>
-                  <li>Max. Cantidad Zapatos - Zapatillas</li>
-                  <li>Precio Emsable Zapatos - Zapatillas</li>
-                  <li>Comision Sobre Ventas</li>
+                  <li><a href="">Salarios Base</a></li>
+                  <li><a href="">Informes Liquidacion</a></li>
+                  <li><a href="">Max. Cantidad Zapatos - Zapatillas</a></li>
+                  <li><a href="">Precio Emsable Zapatos - Zapatillas</a></li>
+                  <li><a href="">Comision Sobre Ventas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="info"></div>
+          <div class="info">
+            <p>AQUI IRA HTML QUE SE AGREGARA CUANDO LAS FUNCIONES ESTEN LISTAS</p>
+          </div>
         </div>
       </template>
 
@@ -66,7 +68,8 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li>Horas Extras Trabajadas</li>
+                  <li><a href="">Horas Extras Trabajadas<< /a>
+                  </li>
                 </ul>
               </nav>
             </div>
@@ -87,7 +90,7 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li>Cantidad De Ventas Zapatos - Zapatillas</li>
+                  <li><a href="">Cantidad De Ventas Zapatos - Zapatillas</a></li>
                 </ul>
               </nav>
             </div>
@@ -101,7 +104,7 @@
       </template>
 
       <template v-if="is.isEmsablador">
-        <div class="content">
+        <div class=" content">
           <div class="header">
             <div class="title">
               <h1>{{message}}</h1>
@@ -109,15 +112,24 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li>Horas Extras Trabajadas</li>
-                  <li>Cantidad De Emsables Zapatos - Zapatillas</li>
+                  <li><a href="">Horas Extras Trabajadas</a></li>
+                  <li><a href="">Cantidad De Emsables Zapatos - Zapatillas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
           <div class="info">
-            <input type="text">
-            <button>Enviar Horas Extras Trabajadas</button>
+            <div class="horas-extras">
+              <input type="text" placeholder="Ingrese la cantidad de horas extras trabajadas">
+              <button>Enviar Horas Extras Trabajadas</button>
+            </div>
+
+            <div class="zapatos-emsablados">
+              <input type="text" placeholder="Ingrese la cantidad de Emsables de zapatos">
+              <input type=" text" placeholder="Ingrese la cantidad de Emsables de zapatillas">
+              <button>Enviar Zapatos - Zapatillas</button>
+            </div>
+
           </div>
         </div>
       </template>
@@ -127,7 +139,7 @@
 
 
   <!-- CDN Vue - development version, includes helpful console warnings -->
-  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <script src=" https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 
   <!-- CDN Vue -  production version, optimized for size and speed -->
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2"></script> -->

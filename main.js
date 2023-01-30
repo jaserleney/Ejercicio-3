@@ -1,7 +1,7 @@
 var app = new Vue({
   el: "#app",
   data: {
-    message: "Hello Vue!",
+    message: "Bienvenido!",
     db: [
       { user: "admin", password: 1234 },
       { user: "secretario", password: 2345 },
