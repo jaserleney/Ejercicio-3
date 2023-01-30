@@ -19,6 +19,110 @@
 <body>
   <div id="app">
     <h1>{{message}}</h1>
+    <div class="container">
+
+      <div class="login">
+        <form action="" v-on:submit.prevent="login">
+          <select v-model="selected">
+            <option value="admin">Administrador</option>
+            <option value="secretario">Secretario</option>
+            <option value="vendedor">Vendedor</option>
+            <option value="ensamblador">Ensamblador</option>
+          </select>
+          <input v-model="password" type="password" placeholder="Password" />
+          <input type="submit" value="Enviar" />
+        </form>
+      </div>
+
+      <template v-if="is.isAdmin">
+        <div class="content">
+          <div class="header">
+            <div class="title">
+              <h1>{{message}}</h1>
+            </div>
+            <div class="actions">
+              <nav>
+                <ul>
+                  <li>Salarios Base</li>
+                  <li>Informes Liquidacion</li>
+                  <li>Max. Cantidad Zapatos - Zapatillas</li>
+                  <li>Precio Emsable Zapatos - Zapatillas</li>
+                  <li>Comision Sobre Ventas</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="info"></div>
+        </div>
+      </template>
+
+
+      <template v-if="is.isSecretario">
+        <div class="content">
+          <div class="header">
+            <div class="title">
+              <h1>{{message}}</h1>
+            </div>
+            <div class="actions">
+              <nav>
+                <ul>
+                  <li>Horas Extras Trabajadas</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="info">
+            <input type="text">
+            <button>Enviar Horas Extras Trabajadas</button>
+          </div>
+        </div>
+      </template>
+
+      <template v-if="is.isVendedor">
+        <div class=" content">
+          <div class="header">
+            <div class="title">
+              <h1>{{message}}</h1>
+            </div>
+            <div class="actions">
+              <nav>
+                <ul>
+                  <li>Cantidad De Ventas Zapatos - Zapatillas</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="info">
+            <input type="text" placeholder="Cantidad De Zapatos Vendidos">
+            <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
+            <button>Enviar Cantidad De Zapatos - Zapatillas</button>
+          </div>
+        </div>
+      </template>
+
+      <template v-if="is.isEmsablador">
+        <div class="content">
+          <div class="header">
+            <div class="title">
+              <h1>{{message}}</h1>
+            </div>
+            <div class="actions">
+              <nav>
+                <ul>
+                  <li>Horas Extras Trabajadas</li>
+                  <li>Cantidad De Emsables Zapatos - Zapatillas</li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <div class="info">
+            <input type="text">
+            <button>Enviar Horas Extras Trabajadas</button>
+          </div>
+        </div>
+      </template>
+
+    </div>
   </div>
 
 
