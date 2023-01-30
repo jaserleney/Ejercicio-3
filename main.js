@@ -4,9 +4,9 @@ var app = new Vue({
     message: "Bienvenido!",
     db: [
       { user: "admin", password: 1234 },
-      { user: "secretario", password: 2345, salario: 1000000 },
-      { user: "vendedor", password: 3456, salario: 1000000 },
-      { user: "ensamblador", password: 4567, salario: 1000000 },
+      { user: "secretario", password: 2345 },
+      { user: "vendedor", password: 3456 },
+      { user: "ensamblador", password: 4567 },
     ],
     selected: null,
     password: null,
@@ -16,6 +16,7 @@ var app = new Vue({
       isVendedor: false,
       isEnsamblador: false,
     },
+
     show: {
       salary: true,
       max: false,
@@ -23,11 +24,19 @@ var app = new Vue({
       commission: false,
     },
 
+    showEnsamblador: {
+      extras: true,
+      cantidadEnsambles: false,
+    },
+
     maxZapatos: "",
     maxZapatillas: "",
     ensambleZapato: "",
     ensambleZapatilla: "",
     comisionVentas: "",
+    salary: "",
+    salaryBase: 1000000,
+    button: true,
   },
   methods: {
     login() {
@@ -131,6 +140,18 @@ var app = new Vue({
       };
     },
 
-    changeSalary() {},
+    showExtras() {
+      this.showEnsamblador = {
+        extras: true,
+        cantidadEnsambles: false,
+      };
+    },
+
+    showCantidadEnsambles() {
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: true,
+      };
+    },
   },
 });

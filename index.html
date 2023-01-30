@@ -65,22 +65,9 @@
               <div class="container box">
                 <h2>Modificar Salarios Base</h2>
                 <div class="box-content container">
-                  <h3>{{db[1].user}}</h3>
-                  <h3>{{db[1].salario}}</h3>
-                  <input v-model="db[1].salario" type="text" placeholder="Introducir Salario">
-                  <button>Cambiar Salario</button>
-                </div>
-                <div class="box-content container">
-                  <h3>{{db[2].user}}</h3>
-                  <h3>{{db[2].salario}}</h3>
-                  <input v-model="db[2].salario" type="text" placeholder="Introducir Salario">
-                  <button>Cambiar Salario</button>
-                </div>
-                <div class="box-content container">
-                  <h3>{{db[3].user}}</h3>
-                  <h3>{{db[3].salario}}</h3>
-                  <input v-model="db[3].salario" type="text" placeholder="Introducir Salario">
-                  <button>Cambiar Salario</button>
+                  <h3>Salario Base : {{salaryBase}}</h3>
+                  <input v-model.number="salary" @keyup="verificarNum" type="text" placeholder="Introducir Salario">
+                  <button v-show="button" @click="changeSalary">Cambiar Salario</button>
                 </div>
               </div>
             </template>
@@ -180,14 +167,14 @@
             </div>
             <div class="actions">
               <nav>
-                <a href="#info">Horas Extras Trabajadas</a>
-                <a href="#info">Cantidad De Ensambles Zapatos - Zapatillas</a>
+                <a href="#info" @click="showExtras">Horas Extras Trabajadas</a>
+                <a href="#info" @click="showCantidadEnsambles">Cantidad De Ensambles Zapatos - Zapatillas</a>
               </nav>
             </div>
           </div>
           <div class="info container" id="info">
 
-            <template>
+            <template v-if="showEnsamblador.extras">
               <div class="container box">
                 <h2>Enviar Horas Extras</h2>
                 <div class="box-content container">
@@ -200,14 +187,14 @@
             </template>
 
 
-            <template>
+            <template v-if="showEnsamblador.cantidadEnsambles">
               <div class="container box">
                 <h2>Enviar Cantidad De Zapatos - Zapatillas Ensamblados</h2>
                 <div class="box-content container">
                   <div class="zapatos-ensamblados">
                     <input type="text" placeholder="Ingrese la cantidad de Ensambles de zapatos">
                     <input type=" text" placeholder="Ingrese la cantidad de Ensambles de zapatillas">
-                    <button>Enviar Zapatos - Zapatillas</button>
+                    <button class="btn-info">Enviar Zapatos - Zapatillas</button>
                   </div>
                 </div>
               </div>
