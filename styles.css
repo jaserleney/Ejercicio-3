@@ -1,1 +1,167 @@
+:root {
+  --black: #000;
+  --white: #fff;
+  --main-color: #00acff;
+  --secondary-color: #007fbc;
+  --tertiary-color: #e57a44;
+}
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  background-image: url(images/estructura-abstracta-3d-gris-oscuro_3840x2160_xtrafondos.com.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* container */
+.container {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.main {
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  width: 50%;
+  height: 50vh;
+  background-color: var(--white);
+  box-shadow: 0.3rem 0.3rem 0.5rem var(--tertiary-color);
+}
+/* login */
+
+.user,
+.password {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* justify-content: center; */
+  align-items: center;
+  margin: 0.5rem;
+}
+
+.user span,
+.password span {
+  border-right: 1px solid #000;
+  position: absolute;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.25rem;
+}
+
+.user select,
+.password input {
+  width: 90%;
+  border: none;
+  border-radius: 0.5rem;
+  border: 1px solid #000;
+  background-color: transparent;
+  z-index: 99;
+  display: block;
+  font-size: 1.2rem;
+  padding: 0.25rem 2rem;
+}
+.title {
+  display: block;
+  margin: 1rem auto;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.button {
+  display: block;
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  font-size: 1.2rem;
+  font-weight: 500;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 1rem auto;
+}
+.button:hover {
+  background-color: var(--main-color);
+}
+
+/* templates */
+
+.content {
+  margin: 1rem auto;
+  flex-direction: column;
+  border-radius: 1rem;
+  width: 90%;
+  height: 90vh;
+  background-color: var(--white);
+}
+
+.content .header {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1.5rem auto;
+  padding: 1rem;
+  background-color: var(--main-color);
+  border-radius: 1rem;
+  color: var(--white);
+  width: 99%;
+}
+
+.content .actions nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: row;
+}
+
+.content .actions nav ul li {
+  display: block;
+  list-style: none;
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.content .actions nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+.content .actions nav ul li a:hover {
+  background-color: var(--white);
+  color: var(--main-color);
+  border-radius: 1rem;
+}
+
+.content .info {
+  margin: 0 auto;
+  flex-direction: column;
+  flex-wrap: wrap;
+}

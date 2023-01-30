@@ -18,12 +18,16 @@
 
 <body>
   <div id="app">
-    <h2>Bienvenido Al Sistema!</h2>
-    <div class="container">
 
-      <div class="login">
+    <div class="container-main">
+
+      <div class="login container main">
+        <h2 class="title">
+          <span class="material-symbols-outlined">login</span>Bienvenido Al Sistema!
+        </h2>
         <form action="" v-on:submit.prevent="login">
           <div class="user">
+            <span class="material-symbols-outlined">account_circle</span>
             <select v-model="selected" id="selected">
               <option value="admin">Administrador</option>
               <option value="secretario">Secretario</option>
@@ -31,13 +35,16 @@
               <option value="ensamblador">Ensamblador</option>
             </select>
           </div>
-          <input v-model="password" type="password" placeholder="Escribe Tu Password" />
-          <input type="submit" value="Enviar" />
+          <div class="password">
+            <span class="material-symbols-outlined">visibility_off </span>
+            <input v-model="password" type="password" placeholder="Escribe Tu Password" />
+          </div>
+          <input class="button" type="submit" value="Enviar" />
         </form>
       </div>
 
       <template v-if="is.isAdmin">
-        <div class="content">
+        <div class="content container">
           <div class="header">
             <div class="title">
               <h1>{{message}}</h1>
@@ -62,7 +69,7 @@
 
 
       <template v-if="is.isSecretario">
-        <div class="content">
+        <div class="content container">
           <div class="header">
             <div class="title">
               <h1>{{message}}</h1>
@@ -75,15 +82,15 @@
               </nav>
             </div>
           </div>
-          <div class="info">
-            <input type="text">
+          <div class="info container">
+            <input type="text" placeholder="Cantidad de horas extras">
             <button>Enviar Horas Extras Trabajadas</button>
           </div>
         </div>
       </template>
 
       <template v-if="is.isVendedor">
-        <div class=" content">
+        <div class=" content container">
           <div class="header">
             <div class="title">
               <h1>{{message}}</h1>
@@ -96,7 +103,7 @@
               </nav>
             </div>
           </div>
-          <div class="info">
+          <div class="info container">
             <input type="text" placeholder="Cantidad De Zapatos Vendidos">
             <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
             <button>Enviar Cantidad De Zapatos - Zapatillas</button>
@@ -105,7 +112,7 @@
       </template>
 
       <template v-if="is.isEnsamblador">
-        <div class=" content">
+        <div class=" content container">
           <div class="header">
             <div class="title">
               <h1>{{message}}</h1>
@@ -119,7 +126,7 @@
               </nav>
             </div>
           </div>
-          <div class="info">
+          <div class="info container">
             <div class="horas-extras">
               <input type="text" placeholder="Ingrese la cantidad de horas extras trabajadas">
               <button>Enviar Horas Extras Trabajadas</button>
