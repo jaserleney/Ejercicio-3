@@ -27,7 +27,7 @@ var app = new Vue({
         this.selected === undefined ||
         this.password === undefined
       ) {
-        alert("Debes seleccionar un selected y escribir una contraseña");
+        alert("Debes seleccionar un usuario y escribir una contraseña");
       }
 
       if (

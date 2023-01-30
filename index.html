@@ -23,7 +23,7 @@
 
       <div class="login container main">
         <h2 class="title">
-          <span class="material-symbols-outlined">login</span>Bienvenido Al Sistema!
+          <span class="material-symbols-outlined">login</span> Bienvenido Al Sistema!
         </h2>
         <form action="" v-on:submit.prevent="login">
           <div class="user">
@@ -52,16 +52,16 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li><a href="">Salarios Base</a></li>
-                  <li><a href="">Informes Liquidacion</a></li>
-                  <li><a href="">Max. Cantidad Zapatos - Zapatillas</a></li>
-                  <li><a href="">Precio Emsable Zapatos - Zapatillas</a></li>
-                  <li><a href="">Comision Sobre Ventas</a></li>
+                  <li><a href="#info" @click="showSalary">Salarios Base</a></li>
+                  <li><a href="#info">Informes Liquidacion</a></li>
+                  <li><a href="#info">Max. Cantidad Zapatos - Zapatillas</a></li>
+                  <li><a href="#info">Precio Emsable Zapatos - Zapatillas</a></li>
+                  <li><a href="#info">Comision Sobre Ventas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="info">
+          <div class="info container" id="info">
             <p>AQUI IRA HTML QUE SE AGREGARA CUANDO LAS FUNCIONES ESTEN LISTAS</p>
           </div>
         </div>
@@ -77,12 +77,12 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li><a href="">Horas Extras Trabajadas</a></li>
+                  <li><a href="#info">Horas Extras Trabajadas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="info container">
+          <div class="info container" id="info">
             <input type="text" placeholder="Cantidad de horas extras">
             <button>Enviar Horas Extras Trabajadas</button>
           </div>
@@ -98,12 +98,12 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li><a href="">Cantidad De Ventas Zapatos - Zapatillas</a></li>
+                  <li><a href="#info">Cantidad De Ventas Zapatos - Zapatillas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="info container">
+          <div class="info container" id="info">
             <input type="text" placeholder="Cantidad De Zapatos Vendidos">
             <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
             <button>Enviar Cantidad De Zapatos - Zapatillas</button>
@@ -120,13 +120,13 @@
             <div class="actions">
               <nav>
                 <ul>
-                  <li><a href="">Horas Extras Trabajadas</a></li>
-                  <li><a href="">Cantidad De Ensambles Zapatos - Zapatillas</a></li>
+                  <li><a href="#info">Horas Extras Trabajadas</a></li>
+                  <li><a href="#info">Cantidad De Ensambles Zapatos - Zapatillas</a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="info container">
+          <div class="info container" id="info">
             <div class="horas-extras">
               <input type="text" placeholder="Ingrese la cantidad de horas extras trabajadas">
               <button>Enviar Horas Extras Trabajadas</button>

@@ -114,7 +114,7 @@ body {
   flex-direction: column;
   border-radius: 1rem;
   width: 90%;
-  height: 90vh;
+  height: 95vh;
   background-color: var(--white);
 }
 
