@@ -67,7 +67,7 @@
                 <div class="box-content container">
                   <h3>Salario Base : {{salaryBase}}</h3>
                   <input v-model.number="salary" @keyup="verificarNum" type="text" placeholder="Introducir Salario">
-                  <button v-show="button" @click="changeSalary">Cambiar Salario</button>
+                  <button v-show="button" @click="changeSalary" class="btn-info">Cambiar Salario</button>
                 </div>
               </div>
             </template>
@@ -78,12 +78,12 @@
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatos : {{maxZapatos}}</h3>
                   <input v-model="maxZapatos" type="text" placeholder="Cantidad Zapatos">
-                  <button @click="">Cambiar Cantidad Zapatos</button>
+                  <button @click="" class="btn-info">Cambiar Cantidad Zapatos</button>
                 </div>
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatillas : {{maxZapatillas}}</h3>
                   <input v-model="maxZapatillas" type="text" placeholder="Cantidad Zapatillas">
-                  <button @click="">Cambiar Cantidad Zapatillas</button>
+                  <button @click="" class="btn-info">Cambiar Cantidad Zapatillas</button>
                 </div>
               </div>
             </template>
@@ -94,12 +94,12 @@
                 <div class="box-content container">
                   <h3> Precio Ensamble Zapato : {{ensambleZapato}}</h3>
                   <input v-model="ensambleZapato" type="text" placeholder="Precio Ensamble Zapatos">
-                  <button @click="">Cambiar Precio Ensamble Zapatos</button>
+                  <button @click="" class="btn-info">Cambiar Precio Ensamble Zapatos</button>
                 </div>
                 <div class="box-content container">
                   <h3> Precio Ensamble Zapatillas : {{ensambleZapatilla}}</h3>
                   <input v-model="ensambleZapatilla" type="text" placeholder="Precio Ensamble Zapatillas">
-                  <button @click="">Cambiar Precio Ensamble Zapatillas</button>
+                  <button @click="" class="btn-info">Cambiar Precio Ensamble Zapatillas</button>
                 </div>
               </div>
             </template>
@@ -110,7 +110,7 @@
                 <div class="box-content container">
                   <h3> Modificar Porcentaje Comision Ventas : {{comisionVentas}} %</h3>
                   <input v-model="comisionVentas" type="text" placeholder="Comision Ventas">
-                  <button @click="">Cambiar Porcentaje Comision Ventas</button>
+                  <button @click="" class="btn-info">Cambiar Porcentaje Comision Ventas</button>
                 </div>
               </div>
             </template>
@@ -134,7 +134,7 @@
           </div>
           <div class="info container" id="info">
             <input type="text" placeholder="Cantidad de horas extras">
-            <button>Enviar Horas Extras Trabajadas</button>
+            <button class="btn-info">Enviar Horas Extras Trabajadas</button>
           </div>
         </div>
       </template>
@@ -154,7 +154,7 @@
           <div class="info container" id="info">
             <input type="text" placeholder="Cantidad De Zapatos Vendidos">
             <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
-            <button>Enviar Cantidad De Zapatos - Zapatillas</button>
+            <button class="btn-info">Enviar Cantidad De Zapatos - Zapatillas</button>
           </div>
         </div>
       </template>
@@ -180,7 +180,7 @@
                 <div class="box-content container">
                   <div class="horas-extras">
                     <input type="text" placeholder="Ingrese la cantidad de horas extras trabajadas">
-                    <button>Enviar Horas Extras Trabajadas</button>
+                    <button class="btn-info">Enviar Horas Extras Trabajadas</button>
                   </div>
                 </div>
               </div>

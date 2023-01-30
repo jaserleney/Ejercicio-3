@@ -167,3 +167,26 @@ body {
 .box-content {
   flex-direction: column;
 }
+
+.btn-info {
+  margin: 0.5rem auto;
+  border: none;
+  border: 0.1rem solid transparent;
+  border-radius: 0.25rem;
+  background-color: var(--tertiary-color);
+  color: var(--white);
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3 ease;
+}
+.btn-info:hover {
+  background-color: var(--white);
+  border: 0.1rem solid var(--tertiary-color);
+  color: var(--tertiary-color);
+}
+
+/* media queries  */
+@media (max-width: 570px) {
+}
