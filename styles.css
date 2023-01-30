@@ -114,7 +114,7 @@ body {
   flex-direction: column;
   border-radius: 1rem;
   width: 90%;
-  height: 95vh;
+  height: auto;
   background-color: var(--white);
 }
 
@@ -130,31 +130,25 @@ body {
   width: 99%;
 }
 
-.content .actions nav ul {
+.content .actions nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
 }
 
-.content .actions nav ul li {
-  display: block;
-  list-style: none;
-  margin: 0.5rem;
-  padding: 0.5rem;
-}
-
-.content .actions nav ul li a {
+.content .actions nav a {
   display: block;
   text-decoration: none;
   color: var(--white);
   font-weight: 700;
   font-size: 1rem;
   padding: 0.5rem;
+  margin: 0.5rem 1rem;
   transition: all 0.3s ease;
 }
 
-.content .actions nav ul li a:hover {
+.content .actions nav a:hover {
   background-color: var(--white);
   color: var(--main-color);
   border-radius: 1rem;
@@ -164,4 +158,12 @@ body {
   margin: 0 auto;
   flex-direction: column;
   flex-wrap: wrap;
+}
+
+/* templates admi */
+.box {
+  flex-direction: column;
+}
+.box-content {
+  flex-direction: column;
 }
