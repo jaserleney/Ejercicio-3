@@ -100,7 +100,7 @@ body {
   font-weight: 500;
   border-radius: 1rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   margin: 1rem auto;
 }
 .button:hover {
@@ -128,12 +128,6 @@ body {
   border-radius: 1rem;
   color: var(--white);
   width: 99%;
-}
-
-.content .header .title {
-  margin: 0.25rem;
-  width: 99%;
-  border-bottom: 0.1rem solid var(--white);
 }
 
 .content .actions nav {
@@ -188,7 +182,7 @@ body {
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.3 ease;
+  transition: all 0.3s ease;
 }
 .btn-info:hover {
   background-color: var(--white);

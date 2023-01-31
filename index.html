@@ -144,10 +144,23 @@
               </nav>
             </div>
           </div>
-          <div class="info container" id="info">
-            <input type="text" placeholder="Cantidad de horas extras">
-            <button class="btn-info">Enviar Horas Extras Trabajadas</button>
-          </div>
+          <template v-if="!liquidacionSecretario.liquidado">
+            <h2>Enviar Horas Extras</h2>
+            <div class="info container" id="info">
+              <input v-model.number="horasExtrasSecretario" type="number" placeholder="Digite horas extras">
+              <button @click="calcHorasExtras" class="btn-info">Enviar Horas Extras Trabajadas</button>
+            </div>
+          </template>
+          <template v-else>
+            <div class="info container" id="info">
+              <h3>Hola señor {{liquidacionSecretario.empleado}} le muestro un resumen de su liquidacion : </h3>
+              <ul>
+                <li>Salario Base: {{liquidacionSecretario.salarioBase}}</li>
+                <li>Valor Horas Extras Trabajadas: {{liquidacionSecretario.valorHorasExtras}}</li>
+                <li>Total Liquidado: {{liquidacionSecretario.total}}</li>
+              </ul>
+            </div>
+          </template>
           <div class="container btn-border">
             <button @click="logout" class="btn-info container"><span
                 class="material-symbols-outlined">logout</span>Salir</button>
@@ -195,40 +208,50 @@
           <div class="info container" id="info">
 
             <template v-if="showEnsamblador.extras">
-              <div class="">
+
+              <template v-if="!liquidacionEnsamblador.liquidado">
                 <h2>Enviar Horas Extras</h2>
-                <div class="box-content container">
-                  <div class="horas-extras">
-                    <input type="text" placeholder="Ingrese la cantidad de horas extras trabajadas">
-                    <button class="btn-info">Enviar Horas Extras Trabajadas</button>
-                  </div>
+                <div class="info container" id="info">
+                  <input v-model.number="horasExtrasEnsamblador" type="number" placeholder="Digite horas extras">
+                  <button @click="calcHorasExtras" class="btn-info">Enviar Horas Extras Trabajadas</button>
                 </div>
-              </div>
-            </template>
-
-
-            <template v-if="showEnsamblador.cantidadEnsambles">
-              <div class="container box">
-                <h2>Enviar Cantidad De Zapatos - Zapatillas Ensamblados</h2>
-                <div class="box-content container">
-                  <div class="zapatos-ensamblados">
-                    <input type="text" placeholder="Ingrese la cantidad de Ensambles de zapatos">
-                    <input type=" text" placeholder="Ingrese la cantidad de Ensambles de zapatillas">
-                    <button class="btn-info">Enviar Zapatos - Zapatillas</button>
-                  </div>
+              </template>
+              <template v-else>
+                <div class="info container" id="info">
+                  <h3>Hola señor {{liquidacionEnsamblador.empleado}} le muestro un resumen de su liquidacion : </h3>
+                  <ul>
+                    <li>Salario Base: {{liquidacionEnsamblador.salarioBase}}</li>
+                    <li>Valor Horas Extras Trabajadas: {{liquidacionEnsamblador.valorHorasExtras}}</li>
+                    <li>Total Liquidado: {{liquidacionEnsamblador.total}}</li>
+                  </ul>
                 </div>
-              </div>
-            </template>
-
+              </template>
           </div>
-          <div class="container btn-border">
-            <button @click="logout" class="btn-info container"><span
-                class="material-symbols-outlined">logout</span>Salir</button>
+      </template>
+
+
+      <template v-if="showEnsamblador.cantidadEnsambles">
+        <div class="container box">
+          <h2>Enviar Cantidad De Zapatos - Zapatillas Ensamblados</h2>
+          <div class="box-content container">
+            <div class="zapatos-ensamblados">
+              <input type="text" placeholder="Ingrese la cantidad de Ensambles de zapatos">
+              <input type=" text" placeholder="Ingrese la cantidad de Ensambles de zapatillas">
+              <button class="btn-info">Enviar Zapatos - Zapatillas</button>
+            </div>
           </div>
         </div>
       </template>
 
     </div>
+    <div class="container btn-border">
+      <button @click="logout" class="btn-info container"><span
+          class="material-symbols-outlined">logout</span>Salir</button>
+    </div>
+  </div>
+  </template>
+
+  </div>
   </div>
 
 
