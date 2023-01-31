@@ -18,7 +18,7 @@ var app = new Vue({
     },
 
     show: {
-      salary: true,
+      salary: false,
       max: false,
       amount: false,
       commission: false,
