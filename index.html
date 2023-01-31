@@ -66,7 +66,7 @@
                 <h2>Modificar Salarios Base</h2>
                 <div class="box-content container">
                   <h3>Salario Base : {{salaryBase}}</h3>
-                  <input v-model.number="salary" @keyup="verificarNum" type="text" placeholder="Introducir Salario">
+                  <input v-model.number="salary" @keyup="verificarNum" type="number" placeholder="Introducir Salario">
                   <button v-show="button" @click="changeSalary" class="btn-info">Cambiar Salario</button>
                 </div>
               </div>
@@ -77,13 +77,15 @@
                 <h2>Modificar Max. Cantidad Zapatos - Zapatillas</h2>
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatos : {{maxZapatos}}</h3>
-                  <input v-model="maxZapatos" type="text" placeholder="Cantidad Zapatos">
-                  <button @click="changeMaxZptos" class="btn-info">Cambiar Cantidad Zapatos</button>
+                  <input @keyup="verificarNum" v-model.number="maxZapatos" type="number" placeholder="Cantidad Zapatos">
+                  <button v-show="button" @click="changeMaxZptos" class="btn-info">Cambiar Cantidad Zapatos</button>
                 </div>
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatillas : {{maxZapatillas}}</h3>
-                  <input v-model="maxZapatillas" type="text" placeholder="Cantidad Zapatillas">
-                  <button @click="" class="btn-info">Cambiar Cantidad Zapatillas</button>
+                  <input @keyup="verificarNum" v-model.number="maxZapatillas" type="number"
+                    placeholder="Cantidad Zapatillas">
+                  <button v-show="button" @click="changeMaxZtillas" class="btn-info">Cambiar Cantidad
+                    Zapatillas</button>
                 </div>
               </div>
             </template>
@@ -116,6 +118,10 @@
             </template>
 
           </div>
+          <div class="container btn-border">
+            <button @click="logout" class="btn-info container"><span
+                class="material-symbols-outlined">logout</span>Salir</button>
+          </div>
         </div>
       </template>
 
@@ -136,6 +142,10 @@
             <input type="text" placeholder="Cantidad de horas extras">
             <button class="btn-info">Enviar Horas Extras Trabajadas</button>
           </div>
+          <div class="container btn-border">
+            <button @click="logout" class="btn-info container"><span
+                class="material-symbols-outlined">logout</span>Salir</button>
+          </div>
         </div>
       </template>
 
@@ -155,6 +165,10 @@
             <input type="text" placeholder="Cantidad De Zapatos Vendidos">
             <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
             <button class="btn-info">Enviar Cantidad De Zapatos - Zapatillas</button>
+          </div>
+          <div class="container btn-border">
+            <button @click="logout" class="btn-info container"><span
+                class="material-symbols-outlined">logout</span>Salir</button>
           </div>
         </div>
       </template>
@@ -200,6 +214,10 @@
               </div>
             </template>
 
+          </div>
+          <div class="container btn-border">
+            <button @click="logout" class="btn-info container"><span
+                class="material-symbols-outlined">logout</span>Salir</button>
           </div>
         </div>
       </template>

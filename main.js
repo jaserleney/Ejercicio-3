@@ -38,6 +38,7 @@ var app = new Vue({
     salaryBase: 1000000,
     button: true,
   },
+
   methods: {
     login() {
       if (
@@ -101,6 +102,20 @@ var app = new Vue({
           isEnsamblador: true,
         };
         this.message = `Bienvenido! ${this.selected}`;
+      }
+    },
+
+    logout() {
+      let isConfirm = confirm("Esta Seguro Que Desea cerrar sesión?");
+      if (isConfirm) {
+        this.is = {
+          isAdmin: false,
+          isSecretario: false,
+          isVendedor: false,
+          isEnsamblador: false,
+        };
+
+        location.reload();
       }
     },
 
@@ -192,10 +207,21 @@ var app = new Vue({
         this.button = false;
         return false;
       }
-
       if (
         typeof this.salary === "number" &&
         typeof this.salaryBase === "number"
+      ) {
+        this.button = true;
+      }
+
+      if (isNaN(this.maxZapatos || this.maxZapatillas)) {
+        alert("Debes ingresar un valor numérico");
+        this.button = false;
+        return false;
+      }
+      if (
+        typeof this.maxZapatos === "number" &&
+        typeof this.maxZapatillas === "number"
       ) {
         this.button = true;
       }
@@ -203,11 +229,35 @@ var app = new Vue({
 
     changeSalary() {
       this.salaryBase = parseInt(this.salary);
+      localStorage.setItem("salaryBase", this.salaryBase);
     },
 
     changeMaxZptos() {
-      console.log(this.maxZapatos);
+      // console.log(this.maxZapatos);
       this.maxZapatos = parseInt(this.maxZapatos);
+      localStorage.setItem("maxZapatos", this.maxZapatos);
     },
+    changeMaxZtillas() {
+      // console.log(this.maxZapatos);
+      this.maxZapatillas = parseInt(this.maxZapatillas);
+      localStorage.setItem("maxZap", this.maxZapatillas);
+    },
+  },
+
+  created() {
+    let salarioBase = localStorage.getItem("salaryBase");
+    let maxZapatos = localStorage.getItem("maxZapatos");
+    let maxZap = localStorage.getItem("maxZap");
+
+    if (maxZapatos !== null) {
+      this.maxZapatos = parseInt(maxZapatos);
+    }
+    if (maxZap !== null) {
+      this.maxZapatillas = parseInt(maxZap);
+    }
+
+    if (salarioBase !== null) {
+      this.salaryBase = parseInt(salarioBase);
+    }
   },
 });

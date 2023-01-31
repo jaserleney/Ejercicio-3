@@ -190,6 +190,12 @@ body {
   color: var(--tertiary-color);
 }
 
+.btn-border {
+  margin: 1rem auto;
+  width: 98%;
+  border-top: 0.1rem solid var(--secondary-color);
+}
+
 /* media queries  */
 @media (max-width: 930px) {
   h1 {
