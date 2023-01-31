@@ -146,13 +146,13 @@
           </div>
           <template v-if="!liquidacionSecretario.liquidado">
             <h2>Enviar Horas Extras</h2>
-            <div class="info container" id="info">
+            <div class="box-content  info container" id="info">
               <input v-model.number="horasExtrasSecretario" type="number" placeholder="Digite horas extras" required>
               <button @click="calcularSalarioSecretario" class="btn-info">Enviar Horas Extras Trabajadas</button>
             </div>
           </template>
           <template v-else>
-            <div class="info container" id="info">
+            <div class="box-content  info container" id="info">
               <h3>Hola señor {{liquidacionSecretario.empleado}} le muestro un resumen de su liquidacion : </h3>
               <ul>
                 <li>Salario Base: {{liquidacionSecretario.salarioBase}}</li>
@@ -180,11 +180,30 @@
               </nav>
             </div>
           </div>
-          <div class="info container" id="info">
-            <input type="text" placeholder="Cantidad De Zapatos Vendidos">
-            <input type="text" placeholder="Cantidad De Zapatillas Vendidas">
-            <button class="btn-info">Enviar Cantidad De Zapatos - Zapatillas</button>
-          </div>
+
+          <template v-if="!liquidacionVendedor.liquidado">
+            <div class="box-content info container" id="info">
+              <h2>Agrege la cantidad de zapatos y zapatillas vendidas</h2>
+              <input v-model.number="ventasRealizadas" type="number" placeholder="Ventas en zapatos">
+              <button @click="calcSalarioVendedor" class="btn-info">Enviar Cantidad De Zapatos - Zapatillas</button>
+            </div>
+          </template>
+          <template v-else>
+            <div class="info container" id="info">
+              <h3>Hola señor {{liquidacionVendedor.empleado}} le muestro un resumen de su liquidacion : </h3>
+              <ul>
+                <li>Salario Base: {{liquidacionVendedor.salarioBase}}</li>
+                <li>Auxilio Transporte: {{liquidacionVendedor.auxTransporte}}</li>
+                <li>Valor Comision Ventas Zapatos - Zapatillas: {{liquidacionVendedor.comision}}</li>
+                <li>Bonificacion Salario : {{liquidacionVendedor.bonificacionSalario}}</li>
+                <li class="text-bold">Total Liquidado: {{liquidacionVendedor.total}}</li>
+              </ul>
+            </div>
+          </template>
+
+
+
+
           <div class="container btn-border">
             <button @click="logout" class="btn-info container"><span
                 class="material-symbols-outlined">logout</span>Salir</button>
@@ -212,7 +231,7 @@
 
               <template v-if="!liquidacionEnsamblador.liquidado">
                 <h2>Enviar Horas Extras</h2>
-                <div class="info container" id="info">
+                <div class="box-content  info container" id="info">
                   <input v-model.number="horasExtrasEnsamblador" type="number" placeholder="Digite horas extras">
                   <button @click="calcularSalarioEnsamblador" class="btn-info">Enviar Horas Extras Trabajadas</button>
                 </div>
@@ -238,7 +257,7 @@
 
         <template v-if="!zapLiquidado">
           <h2>Enviar Cantidad De Zapatos - Zapatillas Ensamblados</h2>
-          <div class="info container box-content" id="info">
+          <div class="box-content  info container box-content" id="info">
             <input v-model.number="cantidadZapatos" type="number" placeholder="Cant. ensambles zapatos">
             <input v-model.number="cantidadZapatillas" type="number" placeholder="Cant. ensambles zapatillas">
             <button @click="calcZapatosZapatillas" class="btn-info">Enviar Zapatos - Zapatillas</button>
@@ -256,7 +275,7 @@
 
         <template v-if="!valorBonoHijosEnsamblador">
           <h2>Ingrese Cantidad Hijos</h2>
-          <div class="info container box-content" id="info">
+          <div class="box-content  info container box-content" id="info">
             <input v-model="cantidadHijosEnsamblador" type="number" placeholder="Cant. Hijos">
             <button class="btn-info" @click="liquidarHijos">Enviar Cantidad De Hijos</button>
           </div>

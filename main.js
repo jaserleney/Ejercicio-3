@@ -53,10 +53,13 @@ var app = new Vue({
     valorBonoZapatillas: "",
     zapLiquidado: false,
 
+    ventasRealizadas: "",
+
     button: true,
 
     liquidacionSecretario: {},
     liquidacionEnsamblador: {},
+    liquidacionVendedor: {},
 
     liquidaciones: [],
   },
@@ -354,10 +357,10 @@ var app = new Vue({
 
     calcZapatosZapatillas() {
       if (
-        !this.cantidadZapatos ||
-        this.cantidadZapatos <= 0 ||
-        !this.cantidadZapatillas ||
-        this.cantidadZapatillas <= 0
+        !this.zapatosVendidos ||
+        this.zapatosVendidos <= 0 ||
+        !this.zapatillasVendidos ||
+        this.zapatillasVendidos <= 0
       ) {
         alert(
           "La cantidad de zapatos/zapatillas no puede ser negativa o igual a cero"
@@ -489,7 +492,7 @@ var app = new Vue({
 
           this.liquidacionEnsamblador = {
             empleado: "ensamblador",
-            auxTransporte: this.subsTransporte,
+            auxTransporte: formatterPeso.format(this.subsTransporte),
             liquidado: true,
             salarioBase: formatterPeso.format(this.salaryBase),
             valorHorasExtras: formatterPeso.format(valorHorasExtrasEnsamblador),
@@ -525,43 +528,113 @@ var app = new Vue({
     },
 
     calcSalarioVendedor() {
-      let valorHora = Math.round(this.salaryBase / 30 / 8);
       const formatterPeso = new Intl.NumberFormat("es-CO", {
         style: "currency",
         currency: "COP",
         minimumFractionDigits: 0,
       });
 
-      if (this.horasExtrasSecretario < 0) {
-        alert("La cantidad de horas extras no puede ser negativa");
+      if (this.ventasRealizadas < 0) {
+        alert(
+          "El valor por venta de zapatos y zapatillas no puede ser negativo"
+        );
         return false;
       }
 
-      if (!this.horasExtrasSecretario) {
-        this.horasExtrasSecretario = 0;
+      if (!this.ventasRealizadas) {
+        this.ventasRealizadas = 0;
       }
 
-      if (this.horasExtrasSecretario >= 0 || this.horasExtrasSecretario) {
-        let valorHorasExtrasSecretario = Math.round(
-          valorHora * 1.8 * parseInt(this.horasExtrasSecretario)
-        );
+      if (this.ventasRealizadas < 5000000) {
+        let bonificacionSalario = 0;
+        let comisionVenta = (this.comisionVentas / 100) * this.ventasRealizadas;
 
-        this.liquidacionSecretario = {
-          empleado: "secretario",
+        this.liquidacionVendedor = {
+          empleado: "vendedor",
           liquidado: true,
+          comision: formatterPeso.format(comisionVenta),
+          auxTransporte: formatterPeso.format(this.subsTransporte),
           salarioBase: formatterPeso.format(this.salaryBase),
-          valorHorasExtras: formatterPeso.format(valorHorasExtrasSecretario),
+          bonificacionSalario: 0,
           total: formatterPeso.format(
-            this.salaryBase + valorHorasExtrasSecretario
+            comisionVenta +
+              bonificacionSalario +
+              this.subsTransporte +
+              this.salaryBase
           ),
         };
-        this.liquidaciones.push(this.liquidacionSecretario);
+        this.liquidaciones.push(this.liquidacionVendedor);
 
         localStorage.setItem(
-          "liquiSecretario",
-          JSON.stringify(this.liquidacionSecretario)
+          "liquiVendedor",
+          JSON.stringify(this.liquidacionVendedor)
         );
-        // console.log(this.liquidaciones);
+
+        localStorage.setItem(
+          "liquidaciones",
+          JSON.stringify(this.liquidaciones)
+        );
+      }
+
+      if (
+        this.ventasRealizadas >= 5000000 &&
+        this.ventasRealizadas < 10000000
+      ) {
+        let bonificacionSalario = this.salaryBase * 0.1;
+        let comisionVenta = (this.comisionVentas / 100) * this.ventasRealizadas;
+
+        this.liquidacionVendedor = {
+          empleado: "vendedor",
+          liquidado: true,
+          comision: formatterPeso.format(comisionVenta),
+          auxTransporte: formatterPeso.format(this.subsTransporte),
+          salarioBase: formatterPeso.format(this.salaryBase),
+          bonificacionSalario: formatterPeso.format(bonificacionSalario),
+          total: formatterPeso.format(
+            comisionVenta +
+              bonificacionSalario +
+              this.subsTransporte +
+              this.salaryBase
+          ),
+        };
+        this.liquidaciones.push(this.liquidacionVendedor);
+
+        localStorage.setItem(
+          "liquiVendedor",
+          JSON.stringify(this.liquidacionVendedor)
+        );
+
+        localStorage.setItem(
+          "liquidaciones",
+          JSON.stringify(this.liquidaciones)
+        );
+      }
+
+      if (this.ventasRealizadas >= 10000000) {
+        let bonificacionSalario = this.salaryBase * 0.2;
+        let comisionVenta = (this.comisionVentas / 100) * this.ventasRealizadas;
+
+        this.liquidacionVendedor = {
+          empleado: "vendedor",
+          liquidado: true,
+          comision: formatterPeso.format(comisionVenta),
+          auxTransporte: formatterPeso.format(this.subsTransporte),
+          salarioBase: formatterPeso.format(this.salaryBase),
+          bonificacionSalario: formatterPeso.format(bonificacionSalario),
+          total: formatterPeso.format(
+            comisionVenta +
+              bonificacionSalario +
+              this.subsTransporte +
+              this.salaryBase
+          ),
+        };
+        this.liquidaciones.push(this.liquidacionVendedor);
+
+        localStorage.setItem(
+          "liquiVendedor",
+          JSON.stringify(this.liquidacionVendedor)
+        );
+
         localStorage.setItem(
           "liquidaciones",
           JSON.stringify(this.liquidaciones)
@@ -584,7 +657,8 @@ var app = new Vue({
       hijoLiquidado = localStorage.getItem("hijoLiquidado"),
       valorBonoZapatillas = localStorage.getItem("bonoZapatillas"),
       valorBonoZapatos = localStorage.getItem("bonoZapatos"),
-      zapLiquidado = localStorage.getItem("zapLiquidado");
+      zapLiquidado = localStorage.getItem("zapLiquidado"),
+      liquiVendedor = localStorage.getItem("liquiVendedor");
 
     if (maxZapatos !== null) {
       this.maxZapatos = parseInt(maxZapatos);
@@ -629,6 +703,9 @@ var app = new Vue({
     }
     if (zapLiquidado !== null) {
       this.zapLiquidado = zapLiquidado;
+    }
+    if (liquiVendedor !== null) {
+      this.liquidacionVendedor = JSON.parse(liquiVendedor);
     }
   },
 });
