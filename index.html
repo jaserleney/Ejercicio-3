@@ -95,13 +95,17 @@
                 <h2>Modificar Precio Ensamble Zapatos - Zapatillas</h2>
                 <div class="box-content container">
                   <h3> Precio Ensamble Zapato : {{ensambleZapato}}</h3>
-                  <input v-model="ensambleZapato" type="text" placeholder="Precio Ensamble Zapatos">
-                  <button @click="" class="btn-info">Cambiar Precio Ensamble Zapatos</button>
+                  <input @keyup="verificarNum" v-model.number="ensambleZapato" type="number"
+                    placeholder="Precio Ensamble Zapatos">
+                  <button v-show="button" @click="changePriceZpatos" class="btn-info">Cambiar Precio Ensamble
+                    Zapatos</button>
                 </div>
                 <div class="box-content container">
                   <h3> Precio Ensamble Zapatillas : {{ensambleZapatilla}}</h3>
-                  <input v-model="ensambleZapatilla" type="text" placeholder="Precio Ensamble Zapatillas">
-                  <button @click="" class="btn-info">Cambiar Precio Ensamble Zapatillas</button>
+                  <input @keyup="verificarNum" v-model.number="ensambleZapatilla" type="number"
+                    placeholder="Precio Ensamble Zapatillas">
+                  <button v-show="button" @click="changePriceZtillas" class="btn-info">Cambiar Precio Ensamble
+                    Zapatillas</button>
                 </div>
               </div>
             </template>
@@ -111,8 +115,10 @@
                 <h2>Modificar Comison Ventas</h2>
                 <div class="box-content container">
                   <h3> Modificar Porcentaje Comision Ventas : {{comisionVentas}} %</h3>
-                  <input v-model="comisionVentas" type="text" placeholder="Comision Ventas">
-                  <button @click="" class="btn-info">Cambiar Porcentaje Comision Ventas</button>
+                  <input @keyup="verificarNum" v-model.number="comisionVentas" type="number"
+                    placeholder="Comision Ventas">
+                  <button v-show="button" @click="changeCommission" class="btn-info">Cambiar Porcentaje Comision
+                    Ventas</button>
                 </div>
               </div>
             </template>

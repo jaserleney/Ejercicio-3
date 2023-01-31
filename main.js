@@ -225,6 +225,18 @@ var app = new Vue({
       ) {
         this.button = true;
       }
+
+      if (isNaN(this.ensambleZapatilla || this.ensambleZapatilla)) {
+        alert("Debes ingresar un valor numérico");
+        this.button = false;
+        return false;
+      }
+      if (
+        typeof this.ensambleZapatilla === "number" &&
+        typeof this.ensambleZapatilla === "number"
+      ) {
+        this.button = true;
+      }
     },
 
     changeSalary() {
@@ -233,21 +245,38 @@ var app = new Vue({
     },
 
     changeMaxZptos() {
-      // console.log(this.maxZapatos);
       this.maxZapatos = parseInt(this.maxZapatos);
       localStorage.setItem("maxZapatos", this.maxZapatos);
     },
+
     changeMaxZtillas() {
-      // console.log(this.maxZapatos);
       this.maxZapatillas = parseInt(this.maxZapatillas);
       localStorage.setItem("maxZap", this.maxZapatillas);
+    },
+
+    changePriceZpatos() {
+      this.ensambleZapato = parseInt(this.ensambleZapato);
+      localStorage.setItem("ensambleZto", this.ensambleZapato);
+    },
+
+    changePriceZtillas() {
+      this.ensambleZapatilla = parseInt(this.ensambleZapatilla);
+      localStorage.setItem("ensambleZap", this.ensambleZapatilla);
+    },
+
+    changeCommission() {
+      this.comisionVentas = parseInt(this.comisionVentas);
+      localStorage.setItem("comisionVentas", this.comisionVentas);
     },
   },
 
   created() {
-    let salarioBase = localStorage.getItem("salaryBase");
-    let maxZapatos = localStorage.getItem("maxZapatos");
-    let maxZap = localStorage.getItem("maxZap");
+    let salarioBase = localStorage.getItem("salaryBase"),
+      maxZapatos = localStorage.getItem("maxZapatos"),
+      maxZap = localStorage.getItem("maxZap"),
+      ensambleZto = localStorage.getItem("ensambleZto"),
+      ensambleZap = localStorage.getItem("ensambleZap"),
+      comisionVentas = localStorage.getItem("comisionVentas");
 
     if (maxZapatos !== null) {
       this.maxZapatos = parseInt(maxZapatos);
@@ -258,6 +287,16 @@ var app = new Vue({
 
     if (salarioBase !== null) {
       this.salaryBase = parseInt(salarioBase);
+    }
+
+    if (ensambleZto !== null) {
+      this.ensambleZapato = parseInt(ensambleZto);
+    }
+    if (ensambleZap !== null) {
+      this.ensambleZapatilla = parseInt(ensambleZap);
+    }
+    if (comisionVentas !== null) {
+      this.comisionVentas = parseInt(comisionVentas);
     }
   },
 });
