@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script>
+    class Vendedor {
+      constructor(salarioBase, comision, ventas, subsidioTransporte) {
+        this.salarioBase = salarioBase;
+        this.comision = comision;
+        this.ventas = ventas;
+        this.subsidioTransporte = subsidioTransporte;
+      }
+
+      calcularSalario() {
+        let salario = this.salarioBase + (this.comision * this.ventas);
+        let bonificacion = this.calcularBonificacion();
+        salario += bonificacion + this.subsidioTransporte;
+        return salario;
+      }
+
+      calcularBonificacion() {
+        let bonificacion = 0;
+        if (this.ventas > 5000000) {
+          bonificacion = this.salarioBase * 0.1;
+        }
+        if (this.ventas > 10000000) {
+          bonificacion = this.salarioBase * 0.2;
+        }
+        return bonificacion;
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <form>
+    Salario Base: <input type="text" id="salarioBase"><br><br>
+    Comision: <input type="text" id="comision"><br><br>
+    Ventas: <input type="text" id="ventas"><br><br>
+    Subsidio de Transporte: <input type="text" id="subsidioTransporte"><br><br>
+    <button onclick="calcularSalario()">Calcular Salario</button>
+  </form>
+  <div id="resultado"></div>
+
+  <script>
+    function calcularSalario() {
+      let salarioBase = parseFloat(document.getElementById("salarioBase").value);
+      let comision = parseFloat(document.getElementById("comision").value);
+      let ventas = parseFloat(document.getElementById("ventas").value);
+      let subsidioTransporte = parseFloat(document.getElementById("subsidioTransporte").value);
+
+      let vendedor1 = new Vendedor(salarioBase, comision, ventas, subsidioTransporte);
+      document.getElementById("resultado").innerHTML = "El salario total es: " + vendedor1.calcularSalario();
+    }
+  </script>
+</body>
+
+</html>
+
+<form onsubmit="return calculate()">
+  <label for="zapatosEnsamblados">Zapatos ensamblados:</label>
+  <input type="number" id="zapatosEnsamblados" name="zapatosEnsamblados" value="1200">
+  <br>
+  <label for="zapatillasEnsambladas">Zapatillas ensambladas:</label>
+  <input type="number" id="zapatillasEnsambladas" name="zapatillasEnsambladas" value="2000">
+  <br>
+  <label for="numeroHijos">Número de hijos:</label>
+  <input type="number" id="numeroHijos" name="numeroHijos" value="2">
+  <br>
+  <button type="submit">Submit</button>
+</form>
+<br>
+<p id="result"></p>
+
+<script>
+  function calculate() {
+    var zapatosEnsamblados = document.getElementById("zapatosEnsamblados").value;
+    var zapatillasEnsambladas = document.getElementById("zapatillasEnsambladas").value;
+    var numeroHijos = document.getElementById("numeroHijos").value;
+
+    // Incremento por zapatos ensamblados
+    var incrementoZapatos = 0;
+    if (zapatosEnsamblados > 1000) {
+      incrementoZapatos = 0.1;
+    }
+    if (zapatosEnsamblados > 2000) {
+      incrementoZapatos = 0.2;
+    }
+
+    // Incremento por zapatillas ensambladas
+    var incrementoZapatillas = 0;
+    if (zapatillasEnsambladas > 1700) {
+      incrementoZapatillas = 0.15;
+    }
+    if (zapatillasEnsambladas > 3000) {
+      incrementoZapatillas = 0.3;
+    }
+
+    // Auxilio de transporte según lo establecido por la ley
+    var auxilioTransporte = 30000;
+
+    // Bono por hijos
+    var bonoHijos = numeroHijos * 60000;
+
+    document.getElementById("result").innerHTML =
+      "Incremento por zapatos ensamblados: " + incrementoZapatos + "<br>" +
+      "Incremento por zapatillas ensambladas: " + incrementoZapatillas + "<br>" +
+      "Auxilio de transporte: " + auxilioTransporte + "<br>" +
+      "Bono por hijos: " + bonoHijos;
+
+    return false;
+  }
+</script>

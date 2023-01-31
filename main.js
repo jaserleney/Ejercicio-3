@@ -27,6 +27,7 @@ var app = new Vue({
     showEnsamblador: {
       extras: true,
       cantidadEnsambles: false,
+      cantidadHijos: false,
     },
 
     maxZapatos: "",
@@ -36,9 +37,21 @@ var app = new Vue({
     comisionVentas: "",
     salary: "",
     salaryBase: 1000000,
+    subsTransporte: 140000,
 
     horasExtrasSecretario: "",
     horasExtrasEnsamblador: "",
+
+    hijosEnsamblador: false,
+    cantidadHijosEnsamblador: "",
+    valorBonoHijosEnsamblador: "",
+    hijoLiquidado: false,
+
+    cantidadZapatos: "",
+    cantidadZapatillas: "",
+    valorBonoZapatos: "",
+    valorBonoZapatillas: "",
+    zapLiquidado: false,
 
     button: true,
 
@@ -186,6 +199,7 @@ var app = new Vue({
       this.showEnsamblador = {
         extras: true,
         cantidadEnsambles: false,
+        cantidadHijos: false,
       };
 
       this.show = {
@@ -200,6 +214,7 @@ var app = new Vue({
       this.showEnsamblador = {
         extras: false,
         cantidadEnsambles: true,
+        cantidadHijos: false,
       };
 
       this.show = {
@@ -208,6 +223,42 @@ var app = new Vue({
         amount: false,
         commission: false,
       };
+    },
+
+    showHijos() {
+      let haveHijos = confirm("Si tiene hijos pulse OK");
+
+      if (haveHijos) {
+        this.showEnsamblador = {
+          extras: false,
+          cantidadEnsambles: false,
+          cantidadHijos: true,
+        };
+
+        this.show = {
+          salary: false,
+          max: false,
+          amount: false,
+          commission: false,
+        };
+      } else {
+        this.showEnsamblador = {
+          extras: false,
+          cantidadEnsambles: false,
+          cantidadHijos: false,
+        };
+
+        this.show = {
+          salary: false,
+          max: false,
+          amount: false,
+          commission: false,
+        };
+        this.hijoLiquidado = true;
+        localStorage.setItem("hijoLiquidado", this.hijoLiquidado);
+
+        alert("Gracias por responder");
+      }
     },
 
     verificarNum() {
@@ -278,7 +329,97 @@ var app = new Vue({
       localStorage.setItem("comisionVentas", this.comisionVentas);
     },
 
-    calcHorasExtras() {
+    liquidarHijos() {
+      if (this.cantidadHijosEnsamblador <= 0) {
+        alert(
+          "La cantidad de hijos ensamblador no puede ser negativa o igual a cero"
+        );
+      }
+
+      if (parseInt(this.cantidadHijosEnsamblador) === 1) {
+        this.valorBonoHijosEnsamblador = 80000;
+        localStorage.setItem("bonoHijo", this.valorBonoHijosEnsamblador);
+        this.hijoLiquidado = true;
+        localStorage.setItem("hijoLiquidado", this.hijoLiquidado);
+      }
+
+      if (parseInt(this.cantidadHijosEnsamblador) >= 2) {
+        this.valorBonoHijosEnsamblador =
+          60000 * parseInt(this.cantidadHijosEnsamblador);
+        localStorage.setItem("bonoHijo", this.valorBonoHijosEnsamblador);
+        this.hijoLiquidado = true;
+        localStorage.setItem("hijoLiquidado", this.hijoLiquidado);
+      }
+    },
+
+    calcZapatosZapatillas() {
+      if (
+        !this.cantidadZapatos ||
+        this.cantidadZapatos <= 0 ||
+        !this.cantidadZapatillas ||
+        this.cantidadZapatillas <= 0
+      ) {
+        alert(
+          "La cantidad de zapatos/zapatillas no puede ser negativa o igual a cero"
+        );
+        return false;
+      }
+
+      if (this.cantidadZapatos >= 1 && this.cantidadZapatos <= 1000) {
+        this.valorBonoZapatos = this.cantidadZapatos * this.ensambleZapato;
+        // console.log(this.valorBonoZapatos);
+        localStorage.setItem("bonoZapatos", this.valorBonoZapatos);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+
+      if (this.cantidadZapatos > 1000 && this.cantidadZapatos <= 2000) {
+        let valorBono = this.ensambleZapato * 1.1;
+        this.valorBonoZapatos = this.cantidadZapatos * valorBono;
+        // console.log(this.valorBonoZapatos);
+        localStorage.setItem("bonoZapatos", this.valorBonoZapatos);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+
+      if (this.cantidadZapatos > 2000) {
+        let valorBono = this.ensambleZapato * 1.2;
+        this.valorBonoZapatos = this.cantidadZapatos * valorBono;
+        // console.log(this.valorBonoZapatos);
+        localStorage.setItem("bonoZapatos", this.valorBonoZapatos);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+
+      if (this.cantidadZapatillas >= 1 && this.cantidadZapatillas <= 1700) {
+        this.valorBonoZapatillas =
+          this.cantidadZapatillas * this.ensambleZapatilla;
+        // console.log(this.valorBonoZapatillas);
+        localStorage.setItem("bonoZapatillas", this.valorBonoZapatillas);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+
+      if (this.cantidadZapatillas > 1700 && this.cantidadZapatillas <= 3000) {
+        let valorBono = this.ensambleZapatilla * 1.15;
+        this.valorBonoZapatillas = this.cantidadZapatillas * valorBono;
+        // console.log(this.valorBonoZapatillas);
+        localStorage.setItem("bonoZapatillas", this.valorBonoZapatillas);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+
+      if (this.cantidadZapatillas > 3000) {
+        let valorBono = this.ensambleZapatilla * 1.3;
+        this.valorBonoZapatillas = this.cantidadZapatillas * valorBono;
+        // console.log(this.valorBonoZapatillas);
+        localStorage.setItem("bonoZapatillas", this.valorBonoZapatillas);
+        this.zapLiquidado = true;
+        localStorage.setItem("zapLiquidado", this.zapLiquidado);
+      }
+    },
+
+    calcHorasExtrasSecretario() {
       let valorHora = Math.round(this.salaryBase / 30 / 8);
       const formatterPeso = new Intl.NumberFormat("es-CO", {
         style: "currency",
@@ -286,7 +427,16 @@ var app = new Vue({
         minimumFractionDigits: 0,
       });
 
-      if (this.horasExtrasSecretario && this.horasExtrasSecretario > 0) {
+      if (this.horasExtrasSecretario < 0) {
+        alert("La cantidad de horas extras no puede ser negativa");
+        return false;
+      }
+
+      if (!this.horasExtrasSecretario) {
+        this.horasExtrasSecretario = 0;
+      }
+
+      if (this.horasExtrasSecretario >= 0 || this.horasExtrasSecretario) {
         let valorHorasExtrasSecretario = Math.round(
           valorHora * 1.8 * parseInt(this.horasExtrasSecretario)
         );
@@ -312,33 +462,65 @@ var app = new Vue({
           JSON.stringify(this.liquidaciones)
         );
       }
+    },
 
-      if (this.horasExtrasEnsamblador && this.horasExtrasEnsamblador > 0) {
-        let valorHorasExtrasEnsamblador = Math.round(
-          valorHora * 2.2 * parseInt(this.horasExtrasEnsamblador)
-        );
+    calcHorasExtrasEnsamblador() {
+      let valorHora = Math.round(this.salaryBase / 30 / 8);
+      const formatterPeso = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0,
+      });
 
-        this.liquidacionEnsamblador = {
-          empleado: "ensamblador",
-          liquidado: true,
-          salarioBase: formatterPeso.format(this.salaryBase),
-          valorHorasExtras: formatterPeso.format(valorHorasExtrasEnsamblador),
-          total: formatterPeso.format(
-            this.salaryBase + valorHorasExtrasEnsamblador
-          ),
-        };
+      if (this.horasExtrasEnsamblador < 0) {
+        alert("La cantidad de horas extras no puede ser negativa");
+        return false;
+      }
 
-        this.liquidaciones.push(this.liquidacionEnsamblador);
+      if (!this.horasExtrasEnsamblador) {
+        this.horasExtrasEnsamblador = 0;
+      }
 
-        localStorage.setItem(
-          "liquiEnsamblador",
-          JSON.stringify(this.liquidacionEnsamblador)
-        );
+      if (this.horasExtrasEnsamblador >= 0 || this.horasExtrasEnsamblador) {
+        if (this.hijoLiquidado && this.zapLiquidado) {
+          let valorHorasExtrasEnsamblador = Math.round(
+            valorHora * 2.2 * parseInt(this.horasExtrasEnsamblador)
+          );
 
-        localStorage.setItem(
-          "liquidaciones",
-          JSON.stringify(this.liquidaciones)
-        );
+          this.liquidacionEnsamblador = {
+            empleado: "ensamblador",
+            auxTransporte: this.subsTransporte,
+            liquidado: true,
+            salarioBase: formatterPeso.format(this.salaryBase),
+            valorHorasExtras: formatterPeso.format(valorHorasExtrasEnsamblador),
+            total: formatterPeso.format(
+              this.salaryBase +
+                parseInt(valorHorasExtrasEnsamblador) +
+                this.valorBonoHijosEnsamblador +
+                this.valorBonoZapatos +
+                this.valorBonoZapatos +
+                this.subsTransporte
+            ),
+            bonoHijo: 0 || formatterPeso.format(this.valorBonoHijosEnsamblador),
+            bonoZap: formatterPeso.format(
+              this.valorBonoZapatos + this.valorBonoZapatos
+            ),
+          };
+
+          this.liquidaciones.push(this.liquidacionEnsamblador);
+
+          localStorage.setItem(
+            "liquiEnsamblador",
+            JSON.stringify(this.liquidacionEnsamblador)
+          );
+
+          localStorage.setItem(
+            "liquidaciones",
+            JSON.stringify(this.liquidaciones)
+          );
+        } else {
+          alert("Primero liquida Bono Hijos / Cantidad de ensambles");
+        }
       }
     },
   },
@@ -352,7 +534,12 @@ var app = new Vue({
       comisionVentas = localStorage.getItem("comisionVentas"),
       liquidaciones = localStorage.getItem("liquidaciones"),
       liquiSecretario = localStorage.getItem("liquiSecretario"),
-      liquiEnsamblador = localStorage.getItem("liquiEnsamblador");
+      liquiEnsamblador = localStorage.getItem("liquiEnsamblador"),
+      valorBonoHijosEnsamblador = localStorage.getItem("bonoHijo"),
+      hijoLiquidado = localStorage.getItem("hijoLiquidado"),
+      valorBonoZapatillas = localStorage.getItem("bonoZapatillas"),
+      valorBonoZapatos = localStorage.getItem("bonoZapatos"),
+      zapLiquidado = localStorage.getItem("zapLiquidado");
 
     if (maxZapatos !== null) {
       this.maxZapatos = parseInt(maxZapatos);
@@ -382,6 +569,21 @@ var app = new Vue({
     }
     if (liquiEnsamblador !== null) {
       this.liquidacionEnsamblador = JSON.parse(liquiEnsamblador);
+    }
+    if (valorBonoHijosEnsamblador !== null) {
+      this.valorBonoHijosEnsamblador = parseInt(valorBonoHijosEnsamblador);
+    }
+    if (hijoLiquidado !== null) {
+      this.hijoLiquidado = hijoLiquidado;
+    }
+    if (valorBonoZapatillas !== null) {
+      this.valorBonoZapatillas = parseInt(valorBonoZapatillas);
+    }
+    if (valorBonoZapatos !== null) {
+      this.valorBonoZapatos = parseInt(valorBonoZapatos);
+    }
+    if (zapLiquidado !== null) {
+      this.zapLiquidado = zapLiquidado;
     }
   },
 });
