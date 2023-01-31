@@ -22,6 +22,7 @@ var app = new Vue({
       max: false,
       amount: false,
       commission: false,
+      infoLiqui: false,
     },
 
     showEnsamblador: {
@@ -56,6 +57,7 @@ var app = new Vue({
     ventasRealizadas: "",
 
     button: true,
+    imprimir: false,
 
     liquidacionSecretario: {},
     liquidacionEnsamblador: {},
@@ -150,6 +152,21 @@ var app = new Vue({
         max: false,
         amount: false,
         commission: false,
+        infoLiqui: false,
+      };
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: false,
+      };
+    },
+
+    showLiquidaciones() {
+      this.show = {
+        salary: false,
+        max: false,
+        amount: false,
+        commission: false,
+        infoLiqui: true,
       };
       this.showEnsamblador = {
         extras: false,
@@ -163,6 +180,7 @@ var app = new Vue({
         max: true,
         amount: false,
         commission: false,
+        infoLiqui: false,
       };
       this.showEnsamblador = {
         extras: false,
@@ -176,6 +194,7 @@ var app = new Vue({
         max: false,
         amount: true,
         commission: false,
+        infoLiqui: false,
       };
 
       this.showEnsamblador = {
@@ -357,10 +376,10 @@ var app = new Vue({
 
     calcZapatosZapatillas() {
       if (
-        !this.zapatosVendidos ||
-        this.zapatosVendidos <= 0 ||
-        !this.zapatillasVendidos ||
-        this.zapatillasVendidos <= 0
+        !this.cantidadZapatos ||
+        this.cantidadZapatos <= 0 ||
+        !this.cantidadZapatillas ||
+        this.cantidadZapatillas <= 0
       ) {
         alert(
           "La cantidad de zapatos/zapatillas no puede ser negativa o igual a cero"
@@ -639,6 +658,25 @@ var app = new Vue({
           "liquidaciones",
           JSON.stringify(this.liquidaciones)
         );
+      }
+    },
+
+    informesLiquidaciones() {
+      console.log(this.liquidaciones);
+      this.imprimir = true;
+    },
+
+    eliminarLiquidacion() {
+      let isDelete = confirm("Desea eliminar esta liquidacion?");
+      if (isDelete) {
+        localStorage.clear();
+        this.liquidaciones = [];
+        this.imprimir = false;
+        this.liquidacionSecretario = {};
+        this.liquidacionVendedor = {};
+        this.liquidacionEnsamblador = {};
+      } else {
+        return false;
       }
     },
   },

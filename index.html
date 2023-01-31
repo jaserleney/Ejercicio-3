@@ -52,7 +52,7 @@
             <div class="actions">
               <nav>
                 <a href="#info" @click="showSalary">Salarios Base</a>
-                <a href="#info">Informes Liquidacion</a>
+                <a href="#info" @click="showLiquidaciones">Informes Liquidacion</a>
                 <a href="#info" @click="showMax">Max. Cantidad Ztos - Zapatillas</a>
                 <a href="#info" @click="showAmount">Precio Ensamble Ztos - Zapatillas</a>
                 <a href="#info" @click="showCommission">Comision Sobre Ventas</a>
@@ -68,6 +68,45 @@
                   <h3>Salario Base : {{salaryBase}}</h3>
                   <input v-model.number="salary" @keyup="verificarNum" type="number" placeholder="Introducir Salario">
                   <button v-show="button" @click="changeSalary" class="btn-info">Cambiar Salario</button>
+                </div>
+              </div>
+            </template>
+
+            <template v-if="show.infoLiqui">
+              <div class="container box">
+                <h2>Imprimir Liquidaciones Empleados</h2>
+                <div class="box-content container">
+
+                  <template v-if="imprimir">
+
+                    <template v-if="liquidaciones.length">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th>Empleado</th>
+                            <th>Salario Base</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr v-for="liquidacion in liquidaciones">
+                            <td>{{liquidacion.empleado}}</td>
+                            <td>{{liquidacion.salarioBase}}</td>
+                            <td>{{liquidacion.total}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <button @click="eliminarLiquidacion" class="danger btn-info ">Eliminar Liquidaciones</button>
+                    </template>
+                    <p v-else>No hay liquidaciones a mostrar, pidale a los empleados que se liquiden</p>
+                  </template>
+
+
+                  <template v-else>
+                    <p>Aqui podra consultar las liquidaciones de empleados</p>
+                  </template>
+                  <button v-show=" button" @click="informesLiquidaciones" class="btn-info">Imprimir
+                    Liquidaciones</button>
                 </div>
               </div>
             </template>

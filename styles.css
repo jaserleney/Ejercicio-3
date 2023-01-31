@@ -210,6 +210,28 @@ body {
   padding: 0.5rem;
 }
 
+.table {
+  margin: 0.5rem auto;
+  padding: 0.5rem;
+}
+.table th,
+.table td {
+  padding: 0.5rem 1rem;
+  margin: 0.5rem auto;
+  border: 0.1rem solid var(--tertiary-color);
+}
+
+.danger {
+  background-color: red;
+  color: var(--white);
+  font-size: 0.8rem;
+}
+.danger:hover {
+  background-color: var(--white);
+  border: 0.1rem solid red;
+  color: red;
+}
+
 /* media queries  */
 @media (max-width: 930px) {
   h1 {
