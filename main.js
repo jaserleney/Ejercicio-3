@@ -30,11 +30,11 @@ var app = new Vue({
       cantidadHijos: false,
     },
 
-    maxZapatos: "",
-    maxZapatillas: "",
-    ensambleZapato: "",
-    ensambleZapatilla: "",
-    comisionVentas: "",
+    maxZapatos: 2500,
+    maxZapatillas: 3500,
+    ensambleZapato: 100,
+    ensambleZapatilla: 200,
+    comisionVentas: 15,
     salary: "",
     salaryBase: 1000000,
     subsTransporte: 140000,
@@ -419,7 +419,7 @@ var app = new Vue({
       }
     },
 
-    calcHorasExtrasSecretario() {
+    calcularSalarioSecretario() {
       let valorHora = Math.round(this.salaryBase / 30 / 8);
       const formatterPeso = new Intl.NumberFormat("es-CO", {
         style: "currency",
@@ -464,7 +464,7 @@ var app = new Vue({
       }
     },
 
-    calcHorasExtrasEnsamblador() {
+    calcularSalarioEnsamblador() {
       let valorHora = Math.round(this.salaryBase / 30 / 8);
       const formatterPeso = new Intl.NumberFormat("es-CO", {
         style: "currency",
@@ -521,6 +521,51 @@ var app = new Vue({
         } else {
           alert("Primero liquida Bono Hijos / Cantidad de ensambles");
         }
+      }
+    },
+
+    calcSalarioVendedor() {
+      let valorHora = Math.round(this.salaryBase / 30 / 8);
+      const formatterPeso = new Intl.NumberFormat("es-CO", {
+        style: "currency",
+        currency: "COP",
+        minimumFractionDigits: 0,
+      });
+
+      if (this.horasExtrasSecretario < 0) {
+        alert("La cantidad de horas extras no puede ser negativa");
+        return false;
+      }
+
+      if (!this.horasExtrasSecretario) {
+        this.horasExtrasSecretario = 0;
+      }
+
+      if (this.horasExtrasSecretario >= 0 || this.horasExtrasSecretario) {
+        let valorHorasExtrasSecretario = Math.round(
+          valorHora * 1.8 * parseInt(this.horasExtrasSecretario)
+        );
+
+        this.liquidacionSecretario = {
+          empleado: "secretario",
+          liquidado: true,
+          salarioBase: formatterPeso.format(this.salaryBase),
+          valorHorasExtras: formatterPeso.format(valorHorasExtrasSecretario),
+          total: formatterPeso.format(
+            this.salaryBase + valorHorasExtrasSecretario
+          ),
+        };
+        this.liquidaciones.push(this.liquidacionSecretario);
+
+        localStorage.setItem(
+          "liquiSecretario",
+          JSON.stringify(this.liquidacionSecretario)
+        );
+        // console.log(this.liquidaciones);
+        localStorage.setItem(
+          "liquidaciones",
+          JSON.stringify(this.liquidaciones)
+        );
       }
     },
   },

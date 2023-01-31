@@ -196,6 +196,11 @@ body {
   border-top: 0.1rem solid var(--secondary-color);
 }
 
+.text-bold {
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
 /* media queries  */
 @media (max-width: 930px) {
   h1 {

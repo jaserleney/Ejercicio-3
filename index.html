@@ -148,7 +148,7 @@
             <h2>Enviar Horas Extras</h2>
             <div class="info container" id="info">
               <input v-model.number="horasExtrasSecretario" type="number" placeholder="Digite horas extras" required>
-              <button @click="calcHorasExtrasSecretario" class="btn-info">Enviar Horas Extras Trabajadas</button>
+              <button @click="calcularSalarioSecretario" class="btn-info">Enviar Horas Extras Trabajadas</button>
             </div>
           </template>
           <template v-else>
@@ -157,7 +157,7 @@
               <ul>
                 <li>Salario Base: {{liquidacionSecretario.salarioBase}}</li>
                 <li>Valor Horas Extras Trabajadas: {{liquidacionSecretario.valorHorasExtras}}</li>
-                <li>Total Liquidado: {{liquidacionSecretario.total}}</li>
+                <li class="text-bold">Total Liquidado: {{liquidacionSecretario.total}}</li>
               </ul>
             </div>
           </template>
@@ -214,7 +214,7 @@
                 <h2>Enviar Horas Extras</h2>
                 <div class="info container" id="info">
                   <input v-model.number="horasExtrasEnsamblador" type="number" placeholder="Digite horas extras">
-                  <button @click="calcHorasExtrasEnsamblador" class="btn-info">Enviar Horas Extras Trabajadas</button>
+                  <button @click="calcularSalarioEnsamblador" class="btn-info">Enviar Horas Extras Trabajadas</button>
                 </div>
               </template>
               <template v-else>
@@ -226,7 +226,7 @@
                     <li>Valor Horas Extras Trabajadas: {{liquidacionEnsamblador.valorHorasExtras}}</li>
                     <li>Valor Bono Hijo o Hijos : {{liquidacionEnsamblador.bonoHijo}}</li>
                     <li>Valor Zapatos - Zapatillas: {{liquidacionEnsamblador.bonoZap}}</li>
-                    <li>Total: {{liquidacionEnsamblador.total}}</li>
+                    <li class="text-bold">Total Liquidado: {{liquidacionEnsamblador.total}}</li>
                   </ul>
                 </div>
               </template>
@@ -234,7 +234,7 @@
       </template>
 
 
-      <template v-if="showEnsamblador.cantidadEnsambles">
+      <template v-if=" showEnsamblador.cantidadEnsambles">
 
         <template v-if="!zapLiquidado">
           <h2>Enviar Cantidad De Zapatos - Zapatillas Ensamblados</h2>
