@@ -14,7 +14,7 @@ Clave de usuarios para entrar al sistema : **1234**
 El proyecto es **Responsive web design**
 
 ![Login](./images/1.png)
-![Admin](./images/1.png)
-![Login](./images/1.png)
+![Admin](./images/2.png)
+![Secretario](./images/3.png)
 
 [Demo del Proyecto](https://ejercicio3jasser.netlify.app)
