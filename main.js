@@ -4,9 +4,9 @@ var app = new Vue({
     message: "Bienvenido!",
     db: [
       { user: "admin", password: 1234 },
-      { user: "secretario", password: 2345 },
-      { user: "vendedor", password: 3456 },
-      { user: "ensamblador", password: 4567 },
+      { user: "secretario", password: 1234 },
+      { user: "vendedor", password: 1234 },
+      { user: "ensamblador", password: 1234 },
     ],
     selected: null,
     password: null,
@@ -18,7 +18,7 @@ var app = new Vue({
     },
 
     show: {
-      salary: false,
+      salary: true,
       max: false,
       amount: false,
       commission: false,
@@ -111,6 +111,10 @@ var app = new Vue({
         amount: false,
         commission: false,
       };
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: false,
+      };
     },
 
     showMax() {
@@ -119,6 +123,10 @@ var app = new Vue({
         max: true,
         amount: false,
         commission: false,
+      };
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: false,
       };
     },
 
@@ -129,6 +137,11 @@ var app = new Vue({
         amount: true,
         commission: false,
       };
+
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: false,
+      };
     },
 
     showCommission() {
@@ -138,12 +151,24 @@ var app = new Vue({
         amount: false,
         commission: true,
       };
+
+      this.showEnsamblador = {
+        extras: false,
+        cantidadEnsambles: false,
+      };
     },
 
     showExtras() {
       this.showEnsamblador = {
         extras: true,
         cantidadEnsambles: false,
+      };
+
+      this.show = {
+        salary: false,
+        max: false,
+        amount: false,
+        commission: false,
       };
     },
 
@@ -152,6 +177,37 @@ var app = new Vue({
         extras: false,
         cantidadEnsambles: true,
       };
+
+      this.show = {
+        salary: false,
+        max: false,
+        amount: false,
+        commission: false,
+      };
+    },
+
+    verificarNum() {
+      if (isNaN(this.salary || this.salaryBase)) {
+        alert("Debes ingresar un valor numérico");
+        this.button = false;
+        return false;
+      }
+
+      if (
+        typeof this.salary === "number" &&
+        typeof this.salaryBase === "number"
+      ) {
+        this.button = true;
+      }
+    },
+
+    changeSalary() {
+      this.salaryBase = parseInt(this.salary);
+    },
+
+    changeMaxZptos() {
+      console.log(this.maxZapatos);
+      this.maxZapatos = parseInt(this.maxZapatos);
     },
   },
 });

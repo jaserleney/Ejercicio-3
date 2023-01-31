@@ -25,7 +25,7 @@
         <h2 class="title">
           <span class="material-symbols-outlined">login</span> Bienvenido Al Sistema!
         </h2>
-        <form action="" v-on:submit.prevent="login">
+        <form v-on:submit.prevent="login">
           <div class="user">
             <span class="material-symbols-outlined">account_circle</span>
             <select v-model="selected" id="selected">
@@ -78,7 +78,7 @@
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatos : {{maxZapatos}}</h3>
                   <input v-model="maxZapatos" type="text" placeholder="Cantidad Zapatos">
-                  <button @click="" class="btn-info">Cambiar Cantidad Zapatos</button>
+                  <button @click="changeMaxZptos" class="btn-info">Cambiar Cantidad Zapatos</button>
                 </div>
                 <div class="box-content container">
                   <h3> Cantidad Max Zapatillas : {{maxZapatillas}}</h3>
