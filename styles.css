@@ -167,6 +167,9 @@ body {
 .box-content {
   flex-direction: column;
 }
+.box-content > * {
+  margin: 0.5rem;
+}
 
 .btn-info {
   margin: 0.5rem auto;
@@ -193,7 +196,30 @@ body {
     font-size: 1.5rem;
   }
 
+  h2 {
+    font-size: 1.25rem;
+  }
+
   .content .actions nav a {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .content .actions nav {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 400px) {
+  h1 {
+    font-size: 1.25rem;
+  }
+  h2 {
+    font-size: 1rem;
+  }
+  .user select,
+  .password input {
     font-size: 0.8rem;
   }
 }
